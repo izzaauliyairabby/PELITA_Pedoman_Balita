@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Pelita</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Selanjutnya</string>
+    <string name="previous">Sebelumnya</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_home_fragment">Hello Home fragment</string>
+    <string name="btc_next">Next</string>
+    <string name="btc_finish">FInish</string>
+    <string name="tv_email">Email</string>
+    <string name="ev_email">Masukkan Email</string>
+    <string name="btn_daftarkan">Daftarkan</string>
+    <string name="ev_username">Masukkan Username</string>
+    <string name="ev_password">Masukkan Password</string>
+    <string name="btn_masuk">Sudah punya akun? Masuk</string>
+    <string name="tv_buatakun">Buat Akun Anda</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_username">Username</string>
+    <string name="btn_login">Masuk</string>
+    <string name="btn_daftar">Belum punya akun? Daftarkan</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="donasi">Donasi</string>
+    <string name="profile">Profile</string>
 </resources>

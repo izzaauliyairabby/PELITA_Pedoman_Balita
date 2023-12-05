@@ -6,33 +6,46 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pelita"
+        android:theme="@style/ThemePelita"
         tools:targetApi="31">
         <activity
-            android:name=".splash.splash"
+            android:name=".profil.EditProfileActivity"
+            android:theme="@style/ThemePelita"
             android:exported="false" />
         <activity
-            android:name=".profil.profil"
+            android:name=".login.FragmenLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".home.Home"
+            android:name=".register.FragmentRegisActivity"
             android:exported="false" />
         <activity
-            android:name=".onBoarding.OnBoardingActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".register.RegisterActivity"
+            android:exported="false" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".onboarding.OnboardingActivity"
+            android:theme="@style/ThemePelita" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".home.HomeFragment"
+            android:exported="false" />
     </application>
 
 </manifest>
