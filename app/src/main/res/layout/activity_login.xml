@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="194dp"
+        android:layout_height="152dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher_logo" />
+
+    <ImageView
+        android:id="@+id/iv_appName"
+        android:layout_width="228dp"
+        android:layout_height="83dp"
+        android:layout_below="@id/iv_logo"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_app_name" />
+
+    <TextView
+        android:id="@+id/tv_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_buatakun"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/iv_appName"/>
+
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_email"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_below="@id/tv_nama"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ev_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_email"
+        android:hint="@string/ev_email"
+        android:textColorHint="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_password"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_below="@id/ev_email"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ev_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_password"
+        android:hint="@string/ev_password"
+        android:textColorHint="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ev_password"
+        android:layout_marginTop="20dp"
+        android:text="@string/btn_login"/>
+
+    <TextView
+        android:id="@+id/textViewClickable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="@string/btn_daftar"
+        android:textColor="?attr/colorAccent" />
+
+</RelativeLayout>

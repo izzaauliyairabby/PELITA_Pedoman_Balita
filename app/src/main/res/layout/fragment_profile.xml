@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profil.ProfileFragment">
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="194dp"
+            android:layout_height="152dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher_logo" />
+
+        <TextView
+            android:id="@+id/tv_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_logo"/>
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_nama"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tv_username"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="52dp"
+                android:paddingTop="13dp"
+                android:text="Email"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ev_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alamat Email"
+                android:textColorHint="@android:color/darker_gray"
+                app:startIconDrawable="@drawable/baseline_mail_outline_24"
+                app:endIconTint="@color/colorPrimary"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tv_telepon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tv_email"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="52dp"
+                android:paddingTop="13dp"
+                android:text="Telepon"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ev_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="+63xxxxxxxx"
+                android:textColorHint="@android:color/darker_gray"
+                app:startIconDrawable="@drawable/baseline_phone_forwarded_24"
+                app:endIconTint="@color/colorPrimary"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tv_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tv_telepon"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="52dp"
+                android:paddingTop="13dp"
+                android:text="Alamat"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ev_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Alamat"
+                android:textColorHint="@android:color/darker_gray"
+                app:startIconDrawable="@drawable/baseline_share_location_24"
+                app:endIconTint="@color/colorPrimary"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="10dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnEditProfil"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_password"
+            android:layout_marginTop="20dp"
+            android:text="Edit Profile"/>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
