@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Search Icon -->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="33dp"
+            android:contentDescription="Search Icon"
+            android:src="@drawable/search" />
+
+        <!-- Search EditText -->
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="Cari makanan"
+            android:inputType="text" />
+
+        <!-- Settings Icon -->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="33dp"
+            android:contentDescription="Settings Icon"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/setting" />
+    </LinearLayout>
+
+
+    <!-- Label for Range Slider -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Lemak"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Range Slider -->
+    <com.google.android.material.slider.Slider
+        android:id="@+id/SliderLemak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:value="50.0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Energi"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Range Slider -->
+    <com.google.android.material.slider.Slider
+        android:id="@+id/SliderEnergi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:value="20.0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Protein"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Range Slider -->
+    <com.google.android.material.slider.Slider
+        android:id="@+id/SliderProtein"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:value="80.0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Karbohidrat"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Range Slider -->
+    <com.google.android.material.slider.Slider
+        android:id="@+id/SliderKarbohidrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        android:value="40.0"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="Terapkan"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_inilah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="komposisi gizi pangan diitung dari 100gr"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp" />
+
+</LinearLayout>

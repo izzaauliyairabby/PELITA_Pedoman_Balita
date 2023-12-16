@@ -5,4 +5,5 @@
     <color name="colorPrimary"> #378413</color>
     <color name="transparent">#00ffffff</color>
     <color name="indicator">#73A95A</color>
+    <color name="gray">#A9A9A9</color>
 </resources>

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import com.dicoding.pelita.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +37,17 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val btnMakanan = view.findViewById<Button>(R.id.btn_makanan)
+        val btnResep = view.findViewById<Button>(R.id.btn_resep)
+
+        // Set gray background color for buttons
+        val grayColor = ContextCompat.getColor(requireContext(), R.color.gray)
+        btnMakanan.setBackgroundColor(grayColor)
+        btnResep.setBackgroundColor(grayColor)
+
+        return view
     }
 
     companion object {

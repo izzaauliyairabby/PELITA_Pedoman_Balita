@@ -27,4 +27,8 @@
     <string name="favorite">Favorite</string>
     <string name="donasi">Donasi</string>
     <string name="profile">Profile</string>
+    <string name="hello">Hello</string>
+    <string name="nama_pengguna">Nama pengguna !!!</string>
+    <string name="hello_ud83d_udc4b">Hello 👋</string>
+    <string name="inilah_konten_pilihanmu">Inilah Konten Pilihanmu</string>
 </resources>
