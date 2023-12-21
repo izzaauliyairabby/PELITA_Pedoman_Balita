@@ -5,26 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.dicoding.pelita.R
 import com.dicoding.pelita.databinding.FragmentHomeBinding
-import com.dicoding.pelita.databinding.FragmentProfileBinding
 import com.dicoding.pelita.home.makanan.DetailMakananActivity
 import com.dicoding.pelita.home.resep.DetailResepActivity
-import com.dicoding.pelita.profil.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,37 +30,35 @@ class HomeActivity : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Mendapatkan informasi pengguna saat ini
         val currentUser = auth.currentUser
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser?.uid ?: "")
+        currentUser?.uid?.let { userId ->
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    // Ambil data nama dari snapshot
+                    val nama = documentSnapshot.getString("nama")
 
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // Ambil data nama dari snapshot
-                val nama = snapshot.child("nama").value.toString()
-
-                // Tampilkan nama di UI
-                binding.tvUsername.text = nama
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error
-            }
-        })
+                    // Tampilkan nama di UI
+                    binding.tvUsername.text = nama
+                }
+                .addOnFailureListener { exception ->
+                    // Handle error
+                }
+        }
 
         binding.btnMakanan.setOnClickListener {
-            // Create an Intent to start the EditProfileActivity
+            // Create an Intent to start the DetailMakananActivity
             val intent = Intent(requireContext(), DetailMakananActivity::class.java)
             startActivity(intent)
         }
 
         binding.btnResep.setOnClickListener {
-            // Create an Intent to start the EditProfileActivity
+            // Create an Intent to start the DetailResepActivity
             val intent = Intent(requireContext(), DetailResepActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

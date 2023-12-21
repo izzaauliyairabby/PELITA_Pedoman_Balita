@@ -17,18 +17,14 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 
-private lateinit var usersReference: DatabaseReference
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var firestore: FirebaseFirestore
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -41,8 +37,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        usersReference = FirebaseDatabase.getInstance().getReference("users")
-
+        firestore = FirebaseFirestore.getInstance()
 
         // Inisialisasi GoogleSignInOptions
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -55,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvToRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
-            // Sertakan nama dalam Intent
             startActivity(intent)
         }
 
@@ -84,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Panggil fungsi LoginFirebase dengan menyertakan nama
+            // Panggil fungsi loginFirebase dengan menyertakan nama
             loginFirebase(email, password)
         }
 
@@ -100,21 +94,20 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val userId = auth.currentUser?.uid
                     userId?.let {
-                        usersReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                if (snapshot.exists()) {
-                                    val nama = snapshot.child("nama").getValue(String::class.java)
+                        firestore.collection("users").document(userId).get()
+                            .addOnSuccessListener { documentSnapshot ->
+                                if (documentSnapshot.exists()) {
+                                    val nama = documentSnapshot.getString("nama")
                                     Toast.makeText(this@LoginActivity, "Selamat datang $nama", Toast.LENGTH_SHORT).show()
                                     // Lanjutkan ke aktivitas utama atau lakukan tindakan lainnya
                                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                     startActivity(intent)
                                 }
                             }
-
-                            override fun onCancelled(error: DatabaseError) {
+                            .addOnFailureListener { exception ->
                                 // Handle jika terjadi kesalahan
+                                Toast.makeText(this@LoginActivity, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
                             }
-                        })
                     }
                 } else {
                     Toast.makeText(this, "${task.exception?.message}", Toast.LENGTH_SHORT).show()

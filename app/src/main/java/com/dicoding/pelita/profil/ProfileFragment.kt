@@ -12,17 +12,14 @@ import com.bumptech.glide.Glide
 import com.dicoding.pelita.databinding.FragmentProfileBinding
 import com.dicoding.pelita.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
 
     private val EDIT_PROFILE_REQUEST_CODE = 1
 
@@ -38,28 +35,11 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Mendapatkan informasi pengguna saat ini
         val currentUser = auth.currentUser
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser?.uid ?: "")
 
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // Ambil data nama dari snapshot
-                val nama = snapshot.child("nama").value.toString()
-                val telepon = snapshot.child("telepon").value.toString()
-                val alamat = snapshot.child("alamat").value.toString()
-
-                // Tampilkan nama di UI
-                binding.tvNama.text = nama
-                binding.tvPhoneNumber.text = telepon
-                binding.tvAlamat.text = alamat
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error
-            }
-        })
         // Menampilkan informasi pengguna di UI
         binding.tvNama.text = currentUser?.displayName
         binding.tvEmail.text = currentUser?.email
@@ -78,7 +58,6 @@ class ProfileFragment : Fragment() {
         fetchAndDisplayUserProfile()
     }
 
-
     // Handle the result from EditProfileActivity
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -91,22 +70,28 @@ class ProfileFragment : Fragment() {
     }
 
     private fun fetchAndDisplayUserProfile() {
-        // Coba ambil URL gambar dari Firebase Storage dan tampilkan di ImageView
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val imageUri = snapshot.child("imageUri").value?.toString()
-                if (imageUri != null && imageUri.isNotEmpty()) {
-                    // Load gambar ke ImageView menggunakan Glide
-                    Glide.with(requireContext())
-                        .load(imageUri)
-                        .into(binding.ivProfile)
-                }
-            }
+        // Coba ambil URL gambar dari Firestore dan tampilkan di ImageView
+        val currentUser = auth.currentUser
+        val userId = currentUser?.uid
 
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error
-            }
-        })
+        userId?.let {
+            firestore.collection("users").document(it).get()
+                .addOnSuccessListener { documentSnapshot: DocumentSnapshot? ->
+                    if (documentSnapshot != null) {
+                        val imageUri = documentSnapshot.getString("imageUri")
+                        if (imageUri != null && imageUri.isNotEmpty()) {
+                            // Load gambar ke ImageView menggunakan Glide
+                            Glide.with(requireContext())
+                                .load(imageUri)
+                                .into(binding.ivProfile)
+                        }
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Handle error
+                    Toast.makeText(requireContext(), "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     private fun logout() {

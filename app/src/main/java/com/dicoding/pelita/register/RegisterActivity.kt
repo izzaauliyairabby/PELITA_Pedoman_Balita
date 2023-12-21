@@ -2,21 +2,20 @@ package com.dicoding.pelita.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.pelita.databinding.ActivityRegisterBinding
 import com.dicoding.pelita.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
-    private lateinit var usersReference: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        usersReference = database.reference.child("users")
+        firestore = FirebaseFirestore.getInstance()
 
         binding.tvToLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -72,13 +70,21 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val currentUser = auth.currentUser
 
-                    // Simpan data ke Firebase Realtime Database
+                    // Simpan data ke Cloud Firestore
                     val userId = currentUser?.uid
                     userId?.let {
-                        val userMap = HashMap<String, Any>()
-                        userMap["email"] = email
-                        userMap["nama"] = nama
-                        usersReference.child(userId).setValue(userMap)
+                        val userMap = hashMapOf(
+                            "email" to email,
+                            "nama" to nama
+                        )
+                        firestore.collection("users").document(userId)
+                            .set(userMap)
+                            .addOnSuccessListener {
+                                Log.d("FireStore", "User data saved succesfully")
+                        }
+                            .addOnFailureListener { e->
+                                Log.w("FireStore", "Eror saving user data", e)
+                            }
                     }
 
                     Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
@@ -89,5 +95,4 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
-
 }

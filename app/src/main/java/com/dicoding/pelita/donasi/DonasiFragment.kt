@@ -9,17 +9,13 @@ import androidx.fragment.app.Fragment
 import com.dicoding.pelita.databinding.FragmentDonasiBinding
 import com.dicoding.pelita.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 
 class DonasiFragment : Fragment() {
 
     private lateinit var binding: FragmentDonasiBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,25 +29,23 @@ class DonasiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Mendapatkan informasi pengguna saat ini
         val currentUser = auth.currentUser
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser?.uid ?: "")
+        currentUser?.uid?.let { userId ->
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    // Ambil data nama dari snapshot
+                    val nama = documentSnapshot.getString("nama")
 
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // Ambil data nama dari snapshot
-                val nama = snapshot.child("nama").value.toString()
-
-                // Tampilkan nama di UI
-                binding.tvUsername.text = nama
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error
-            }
-        })
+                    // Tampilkan nama di UI
+                    binding.tvUsername.text = nama
+                }
+                .addOnFailureListener { exception ->
+                    // Handle error
+                }
+        }
     }
-
 }

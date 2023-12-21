@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.pelita.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -26,7 +25,7 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var imageViewProfile: ImageView
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore
     private lateinit var storageReference: StorageReference
 
     private var imageUri: Uri? = null
@@ -35,10 +34,10 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-        // Initialize FirebaseAuth, DatabaseReference, and StorageReference
+        // Initialize FirebaseAuth, Firestore, and StorageReference
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
         val uid = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid ?: "")
         storageReference = FirebaseStorage.getInstance().reference.child("profile_images")
 
         // Initialize your TextInputEditTexts and ImageView
@@ -58,13 +57,15 @@ class EditProfileActivity : AppCompatActivity() {
             val telepon = editTextPassword.text.toString()
             val alamat = editTextAlamat.text.toString()
 
-            // Save the edited data to Firebase Realtime Database
-            val updatedUserData = HashMap<String, Any>()
-            updatedUserData["nama"] = nama
-            updatedUserData["telepon"] = telepon
-            updatedUserData["alamat"] = alamat
+            // Save the edited data to Cloud Firestore
+            val userDocRef = firestore.collection("users").document(uid ?: "")
+            val updatedUserData = hashMapOf(
+                "nama" to nama,
+                "telepon" to telepon,
+                "alamat" to alamat
+            )
 
-            databaseReference.updateChildren(updatedUserData)
+            userDocRef.update(updatedUserData as Map<String, Any>)
                 .addOnSuccessListener {
                     // Data updated successfully
                     // You can add a Toast or any other UI feedback here if needed
@@ -75,6 +76,7 @@ class EditProfileActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     // Handle the failure to update data
                     // You can add a Toast or any other UI feedback here if needed
+                    Log.e("EditProfileActivity", "Error updating data: ${e.message}")
                 }
         }
 
@@ -109,8 +111,9 @@ class EditProfileActivity : AppCompatActivity() {
                 .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot ->
                     // Image uploaded successfully, get the download URL
                     imageRef.downloadUrl.addOnSuccessListener { uri ->
-                        // Save the download URL to the Realtime Database
-                        databaseReference.child("imageUri").setValue(uri.toString())
+                        // Save the download URL to Cloud Firestore
+                        val userDocRef = firestore.collection("users").document(auth.currentUser?.uid ?: "")
+                        userDocRef.update("imageUri", uri.toString())
                     }
                 }
                 .addOnFailureListener { e ->
