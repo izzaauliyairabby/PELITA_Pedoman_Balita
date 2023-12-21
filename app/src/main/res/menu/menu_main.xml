@@ -7,11 +7,6 @@
         android:icon="@drawable/baseline_home_24"/>
 
     <item
-        android:id="@+id/favorite"
-        android:title="@string/favorite"
-        android:icon="@drawable/baseline_favorite_24"/>
-
-    <item
         android:id="@+id/donasi"
         android:title="@string/donasi"
         android:icon="@drawable/baseline_people_24"/>

@@ -56,7 +56,7 @@
         app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/et_emailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
@@ -84,10 +84,10 @@
         app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/et_passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -99,19 +99,82 @@
         android:layout_marginTop="20dp"
         android:text="@string/btn_login"/>
 
-    <TextView
-        android:id="@+id/textViewClickable"
+    <LinearLayout
+        android:id="@+id/tvToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnLogin"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+           android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:text="@string/btn_daftar"
+            android:textColor="?attr/colorAccent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/btn_daftarkan"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/poppins_regular" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_masuk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atau"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
-        android:minHeight="48dp"
-        android:text="@string/btn_daftar"
-        android:textColor="?attr/colorAccent" />
+        android:layout_below="@id/tvToRegister"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnSignInWithGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#D3D3D3"
+        app:cardCornerRadius="30dp"
+        android:layout_below="@id/tv_masuk"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/ic_google_foreground"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="50dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Login with Google"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

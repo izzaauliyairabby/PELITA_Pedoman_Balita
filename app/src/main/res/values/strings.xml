@@ -22,7 +22,7 @@
     <string name="tv_password">Password</string>
     <string name="tv_username">Username</string>
     <string name="btn_login">Masuk</string>
-    <string name="btn_daftar">Belum punya akun? Daftarkan</string>
+    <string name="btn_daftar">Belum punya akun?</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="donasi">Donasi</string>
@@ -31,4 +31,19 @@
     <string name="nama_pengguna">Nama pengguna !!!</string>
     <string name="hello_ud83d_udc4b">Hello 👋</string>
     <string name="inilah_konten_pilihanmu">Inilah Konten Pilihanmu</string>
+    <string name="makanan">Makanan</string>
+    <string name="resep">Resep</string>
+    <string name="berhasil_masuk">Berhasil Masuk</string>
+
+    <string name="selected_item">Selected item:</string>
+    <string name="google_icon_description">Google Login Button</string>
+
+    <string-array name="UmurBayi">
+        <item>6 - 8 Bulan</item>
+        <item>9 - 11 Bulan</item>
+        <item>12 - 23 Bulan</item>
+        <item>24 - 59 Bulan</item>
+    </string-array>
+
+
 </resources>

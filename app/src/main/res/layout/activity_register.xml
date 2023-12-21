@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -54,7 +55,7 @@
         app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextName"
+            android:id="@+id/et_namaRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
@@ -82,7 +83,7 @@
         app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/et_emailRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
@@ -110,10 +111,10 @@
         app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/et_passwordRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -123,10 +124,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ev_password"
         android:layout_marginTop="20dp"
-        android:text="@string/btn_daftarkan"/>
+        android:minHeight="48dp"
+        android:text="@string/btn_daftarkan"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textViewClickable"
+        android:id="@+id/tvToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnRegis"

@@ -4,93 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    tools:context=".home.HomeActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/background"
-        tools:context=".ui.main.MainActivity">
+        tools:ignore="UselessParent"
+        android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_home"
-            android:layout_width="0dp"
+            android:id="@+id/tv_hello"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/hello_ud83d_udc4b"
             android:textSize="30sp"
+            android:text="@string/hello_ud83d_udc4b"
             android:textColor="@color/colorPrimary"
             android:fontFamily="@font/poppins_semibold"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="VisualLintOverlap" />
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"/>
 
         <TextView
-            android:id="@+id/tv_homename"
-            android:layout_width="0dp"
+            android:id="@+id/tv_username"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/nama_pengguna"
             android:textSize="30sp"
             android:textColor="@color/colorPrimary"
             android:fontFamily="@font/poppins_semibold"
-            app:layout_constraintTop_toBottomOf="@id/tv_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            android:layout_below="@id/tv_hello"/>
 
         <TextView
             android:id="@+id/tv_inilah"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/inilah_konten_pilihanmu"
             android:textSize="20sp"
             android:layout_marginStart="10dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_homename"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            android:layout_below="@id/tv_username"/>
 
         <Button
             android:id="@+id/btn_makanan"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="-30dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/custom_button_background1"
-            app:layout_constraintTop_toBottomOf="@id/tv_inilah"
-            app:layout_constraintEnd_toStartOf="@id/btn_resep"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Makanan"
-            android:textSize="20sp"/>
+            android:text="@string/makanan"
+            android:textSize="20sp"
+            android:layout_below="@id/tv_inilah"/>
 
         <Button
             android:id="@+id/btn_resep"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="-30dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_inilah"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_makanan"
-            android:text="Resep"
-            android:textSize="20sp"/>
+            android:background="@drawable/custom_button_background1"
+            android:text="@string/resep"
+            android:textSize="20sp"
+            android:layout_below="@id/tv_inilah"/>
 
         <ImageView
             android:id="@+id/iv_gambar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/regis1"
-            app:layout_constraintTop_toBottomOf="@id/btn_resep"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            android:layout_marginStart="14dp"
+            android:layout_below="@id/btn_resep"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/tv_berhasil"
@@ -102,9 +86,10 @@
             android:layout_marginEnd="16dp"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@id/iv_gambar"
-            android:text="Berhasil Masuk"
+            android:text="@string/berhasil_masuk"
             android:layout_marginBottom="8dp"
-            android:fontFamily="@font/poppins_semibold"/>
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_below="@id/iv_gambar"/>
 
         <TextView
             android:id="@+id/tv_deskripsi"
@@ -112,16 +97,17 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textAlignment= "center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="Temukan Rekomendasi Makanan Bayi Anda Disini"
             app:layout_constraintTop_toBottomOf="@id/tv_berhasil"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8dp"
-            android:fontFamily="@font/poppins_regular"/>
+            android:fontFamily="@font/poppins_regular"
+            android:layout_below="@id/tv_berhasil"/>
 
         <!-- Your existing RecyclerView and ProgressBar code here -->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </FrameLayout>
