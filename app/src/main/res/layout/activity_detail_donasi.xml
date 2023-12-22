@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?><!-- res/layout/activity_detail_donasi.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".donasi.detail.DetailDonasiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDetailDonasi"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/detail_donasi"
+        app:titleTextColor="@color/colorPrimaryDark" />
+
+    <!-- ImageView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imgDetailDonasi"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/toolbarDetailDonasi"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageView
+            android:id="@+id/ivDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/img_donasi"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mkn" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Judul Donasi " -->
+    <TextView
+        android:id="@+id/tvTitleDetailDonasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgDetailDonasi"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Judul Donasi"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Organisasi -->
+    <TextView
+        android:id="@+id/tvOrganizerDetailDonasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitleDetailDonasi"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Organizer: Organizer A" />
+
+    <LinearLayout
+        android:id="@+id/contactLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvOrganizerDetailDonasi"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <!-- TextView untuk label "Contact: " -->
+        <TextView
+            android:id="@+id/tvContactLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact: " />
+
+        <!-- TextView untuk menampilkan informasi kontak -->
+        <TextView
+            android:id="@+id/tvContactDetailDonasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="Contact A" />
+
+    </LinearLayout>
+
+    <!-- Deskripsi -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contactLayout"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:maxLines="8"
+        android:ellipsize="end"
+        android:text="@string/desc" />
+
+    <LinearLayout
+        android:id="@+id/partDonation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDescription"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="84dp"
+        android:orientation="horizontal">
+
+        <!-- TextView untuk label "Contact: " -->
+        <TextView
+            android:id="@+id/tvParticipant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Partisipan" />
+
+        <!-- TextView untuk menampilkan informasi kontak -->
+        <TextView
+            android:id="@+id/tvTotalDonation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Total Donasi" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dataPartDonation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/partDonation"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <!-- TextView untuk label "Contact: " -->
+        <TextView
+            android:id="@+id/tvDataParticipant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="5000" />
+
+        <!-- TextView untuk menampilkan informasi kontak -->
+        <TextView
+            android:id="@+id/tvDataTotalDonation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:text="Rp 25.000.000" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDonasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_below="@id/dataPartDonation"
+        android:layout_marginTop="36dp"
+        android:text="@string/donasi_sekarang"/>
+
+</RelativeLayout>

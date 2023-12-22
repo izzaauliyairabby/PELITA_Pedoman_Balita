@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "734181737389",
+    "project_id": "fir-pelita",
+    "storage_bucket": "fir-pelita.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734181737389:android:c101422e6a5b09e0c85724",
+        "android_client_info": {
+          "package_name": "com.dicoding.pelita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734181737389-qatuoheok9q3ghh0uhc1mjae35lv190i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.pelita",
+            "certificate_hash": "06538a96a614274d3b0d1fb378e63c3fdfbe118a"
+          }
+        },
+        {
+          "client_id": "734181737389-keh62btpe29ni1a7vjdnlahmboudct7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHKpF9MQwTM-MUIE0JUhBPwOUyKKd7uG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734181737389-keh62btpe29ni1a7vjdnlahmboudct7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
